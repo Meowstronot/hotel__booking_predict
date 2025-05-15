@@ -24,34 +24,43 @@ Selain itu, hotel juga ingin memahami faktor-faktor utama yang memengaruhi keput
   - Status pembatalan (target variabel)
 
 ## 5. Model Benchmarking Summary
-| Balancing Method  | Model Terbaik       | Recall CV | Std Recall CV | Recall Test | Recall Gap | Catatan                                                            |
-| ----------------- | ------------------- | --------- | ------------- | ----------- | ---------- | ------------------------------------------------------------------ |
-| **Undersampling** | LightGBM            | 0.8247    | 0.0167        | 0.8628      | -0.0381    | Recall test tertinggi, generalisasi baik, performa stabil          |
-| **Oversampling**  | LightGBM            | 0.8024    | 0.0190        | 0.8254      | -0.023    | Konsisten performa tinggi, gap kecil, stabil                       |
-| **SMOTE**         | Logistic Regression | 0.7639    | 0.0295        | 0.7651      | -0.001    | Performa paling stabil, nyaris tanpa gap, model sederhana & robust |
+| **Balancing Method** | **Model Terbaik**   | **Recall CV** | **Std Recall CV** | **Recall Test** | **Recall Gap** | **Catatan**                                                           |
+| -------------------- | ------------------- | ------------- | ----------------- | --------------- | -------------- | --------------------------------------------------------------------- |
+| **Undersampling**    | LightGBM            | 0.8266        | 0.0269            | 0.8415          | -0.0149        | Recall test tertinggi, generalisasi cukup baik, performa masih stabil |
+| **Oversampling**     | LightGBM            | 0.8111        | 0.0166            | 0.8351          | -0.0240        | Performa tinggi dan stabil, meskipun gap sedikit lebih besar          |
+| **SMOTE**            | Logistic Regression | 0.7812        | 0.0131            | 0.7859          | -0.0047        | Performa paling stabil, gap kecil, model sederhana dan robust         |
 
-Berdasarkan hasil evaluasi dari tiga metode penyeimbangan data **undersampling, oversampling, dan SMOTE**, `LightGBM` menunjukkan performa terbaik pada undersampling dan oversampling, dengan nilai recall test tertinggi (hingga 0.8628) dan recall gap negatif yang menandakan generalisasi yang baik. Sementara itu, Logistic Regression unggul dalam skenario SMOTE dengan performa paling stabil dan hampir tanpa gap, namun dengan recall yang sedikit lebih rendah dibanding `LightGBM`. Mengingat pentingnya recall tinggi dalam kasus ketidakseimbangan kelas dan performa generalisasi yang kuat, `LightGBM` dengan teknik undersampling dipilih sebagai model terbaik untuk dilakukan hyperparameter tuning selanjutnya.
+
+Berdasarkan hasil evaluasi dari tiga metode penyeimbangan data **undersampling, oversampling, dan SMOTE**, `LightGBM` menunjukkan performa terbaik pada undersampling dan oversampling, dengan nilai recall test tertinggi (hingga 0.84) dan recall gap negatif yang menandakan generalisasi yang baik. Sementara itu, Logistic Regression unggul dalam skenario SMOTE dengan performa paling stabil dan hampir tanpa gap, namun dengan recall yang sedikit lebih rendah dibanding `LightGBM`. Mengingat pentingnya recall tinggi dalam kasus ketidakseimbangan kelas dan performa generalisasi yang kuat, `LightGBM` dengan teknik undersampling dipilih sebagai model terbaik untuk dilakukan hyperparameter tuning selanjutnya.
 
 ## 6. Hyperparameter Tuning Summary
-| Model             | Accuracy Test | Recall Test | Precision Test | F1 Score Test |
-|------------------|---------------|-------------|----------------|----------------|
-| LGBM Default     | 0.724752      | 0.862786    | 0.458564       | 0.598846       |
-| LGBM 1st Tuning  | 0.706436      | 0.891892    | 0.442268       | 0.591316       |
-| LGBM 2nd Tuning  | 0.698020      | 0.912682    | 0.435948       | 0.590054       |
+| **Model**           | **Accuracy Test** | **Recall Test** | **Precision Test** | **F1 Score Test** |
+| ------------------- | ----------------- | --------------- | ------------------ | ----------------- |
+| **LGBM 1st Tuning** | 0.712114          | 0.867238        | 0.444566           | 0.587808          |
+| **LGBM 2nd Tuning** | 0.700456          | 0.860814        | 0.433190           | 0.576344          |
+| **LGBM Default**    | 0.706031          | 0.841542        | 0.437152           | 0.575403          |
 
-Setelah dilakukan dua tahap tuning terhadap model `LightGBM`, terjadi peningkatan recall yang signifikan dari 0.86 (default) menjadi 0.89 setelah tuning pertama, dan meningkat lagi menjadi 0.91 setelah tuning kedua. Peningkatan ini menunjukkan bahwa model semakin mampu mengenali kelas minoritas (kelas 1), yang terlihat dari recall kelas 1 yang naik dari **0.86** menjadi **0.91**. Meski akurasi dan precision kelas 1 sedikit menurun, hal ini merupakan trade-off yang umum ketika memaksimalkan recall pada dataset yang tidak seimbang. Secara keseluruhan, tuning kedua berhasil meningkatkan kemampuan deteksi positif (recall) tanpa penurunan drastis pada metrik lainnya, menjadikannya strategi yang efektif untuk masalah klasifikasi dengan fokus pada deteksi kelas minoritas.
+
+Setelah dilakukan dua tahap tuning terhadap model `LightGBM`, terjadi peningkatan recall pada tuning pertama dari **0.84** (default) menjadi **0.87**, menunjukkan bahwa model lebih mampu mengenali kelas minoritas (kelas 1). Namun, pada tuning kedua, recall sedikit menurun menjadi **0.86**, meskipun masih lebih tinggi dibandingkan model default. Dari sisi metrik lainnya, akurasi turun dari **0.71** (tuning pertama) menjadi **0.70** (tuning kedua), dan precision juga menurun dari **0.44** menjadi **0.43**. Secara keseluruhan, model hasil **tuning pertama** memberikan kombinasi terbaik antara recall yang tinggi (**0.87**) dan keseimbangan metrik lainnya, sehingga dapat dianggap sebagai model dengan performa terbaik.
+
 
 ## 7. Model Evaluation Summary
 
-- LGBM 2nd Tuning adalah model terbaik berdasarkan confusion matrix.
-- Memiliki False Negative (FN) paling rendah (42), yang berarti lebih banyak pembatalan berhasil terdeteksi.
-- Dalam konteks bisnis, FN lebih merugikan dibandingkan False Positive (FP), karena berdampak pada hilangnya pendapatan penuh.
-- Meskipun FP model ini lebih tinggi (568), dampaknya relatif kecil dan dapat ditoleransi.
-- Model ini juga memiliki 439 True Positives (TP) dan 971 True Negatives (TN), menunjukkan akurasi yang baik dalam dua kelas.
-- Secara keseluruhan, model ini paling efektif dalam meminimalkan kerugian akibat pembatalan yang tidak terdeteksi.
+**Model terbaik: LGBM 1st Tuning**
+
+* Memiliki **False Negative (FN) terendah**, yaitu **62**, menunjukkan kemampuannya yang paling baik dalam mendeteksi reservasi yang akan dibatalkan. Ini sangat penting karena pembatalan yang tidak terdeteksi dapat menyebabkan kerugian pendapatan bagi hotel.
+
+* Mencapai **True Positive (TP) tertinggi**, yakni **405**, yang berarti model ini paling akurat dalam mengidentifikasi kasus pembatalan secara benar.
+
+* **False Positive (FP)** sebesar **506**, lebih rendah dibandingkan LGBM 2nd Tuning, dan masih dalam batas yang dapat ditoleransi mengingat fokus utama adalah meminimalkan kerugian dari FN.
+
+* **True Negative (TN)** sebanyak **1000**, menandakan bahwa model juga cukup andal dalam mengenali reservasi yang tidak dibatalkan.
+
+* **Kesimpulan:** Dengan kombinasi FN yang rendah dan TP yang tinggi, LGBM 1st Tuning memberikan keseimbangan terbaik antara efektivitas dalam mendeteksi pembatalan dan kestabilan model, menjadikannya pilihan yang paling optimal untuk diterapkan dalam konteks bisnis hotel.
+
 
 ## 8. Conclusion
-Dengan menggunakan model machine learning, hotel berhasil memprediksi dan mengurangi kerugian akibat pembatalan yang tidak terdeteksi secara signifikan, meskipun masih ada biaya terkait dengan prediksi yang salah. Dalam skenario tanpa machine learning, hotel harus menanggung kerugian sebesar 192.400.000 IDR karena tidak dapat melakukan antisipasi terhadap pembatalan. Namun, dengan model machine learning, kerugian dapat dikurangi menjadi 57.080.000 IDR, yang menunjukkan pengurangan kerugian sebesar **70,3%**. Meskipun ada biaya terkait dengan diskon untuk pelanggan yang salah diprediksi (False Positive) dan kerugian akibat pembatalan yang terlewat (False Negative), penggunaan machine learning memungkinkan hotel untuk lebih efisien mengelola risiko pembatalan, mengurangi kerugian, dan meningkatkan pendapatan yang hilang.
+Dengan menggunakan model machine learning, hotel berhasil memprediksi dan mengurangi kerugian akibat pembatalan yang tidak terdeteksi secara signifikan, meskipun masih ada biaya terkait dengan prediksi yang salah. Dalam skenario tanpa machine learning, hotel harus menanggung kerugian sebesar 186.800.000 IDR karena tidak dapat melakukan antisipasi terhadap pembatalan. Namun, dengan model machine learning, kerugian dapat dikurangi menjadi 60.760.000 IDR, yang menunjukkan pengurangan kerugian sebesar **67%**. Meskipun ada biaya terkait dengan diskon untuk pelanggan yang salah diprediksi (False Positive) dan kerugian akibat pembatalan yang terlewat (False Negative), penggunaan machine learning memungkinkan hotel untuk lebih efisien mengelola risiko pembatalan, mengurangi kerugian, dan meningkatkan pendapatan yang hilang.
 
 ## 9.  Recomendation
 1. **Fokus pada Pelanggan Berisiko Pembatalan** <br>
@@ -75,8 +84,8 @@ Berdasarkan hasil feature importances, tim marketing dapat memanfaatkan fitur-fi
 
 ### B. Installation:
 ```
-git clone https://github.com/username/hotel-booking-cancellation
-cd hotel-booking-cancellation
+git clone https://github.com/Meowstronot/hotel__booking_predict
+cd hotel__booking_predict
 pip install -r requirements.txt
 ```
 
