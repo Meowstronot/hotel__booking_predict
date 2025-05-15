@@ -70,7 +70,7 @@ Berdasarkan hasil feature importances, tim marketing dapat memanfaatkan fitur-fi
 ## 10. How to use 
 
 ### A. Requirements:
-* Python 3.9 atau lebih tinggi
+* Python 3.13 atau lebih tinggi
 * Jupyter Notebook
 
 ### B. Installation:
