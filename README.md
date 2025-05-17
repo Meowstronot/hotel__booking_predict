@@ -39,9 +39,12 @@ Berdasarkan hasil evaluasi dari tiga metode penyeimbangan data **undersampling, 
 | **LGBM 1st Tuning** | 0.712114          | 0.867238        | 0.444566           | 0.587808          |
 | **LGBM 2nd Tuning** | 0.700456          | 0.860814        | 0.433190           | 0.576344          |
 | **LGBM Default**    | 0.706031          | 0.841542        | 0.437152           | 0.575403          |
+| **Logistic Reg Tuning** | 0.709579      | 0.790150        | 0.437204           | 0.562929          |
+| **Logistic Reg Default** | 0.712620     | 0.785867        | 0.440048           | 0.564181          |
 
 
-Setelah dilakukan dua tahap tuning terhadap model `LightGBM`, terjadi peningkatan recall pada tuning pertama dari **0.84** (default) menjadi **0.87**, menunjukkan bahwa model lebih mampu mengenali kelas minoritas (kelas 1). Namun, pada tuning kedua, recall sedikit menurun menjadi **0.86**, meskipun masih lebih tinggi dibandingkan model default. Dari sisi metrik lainnya, akurasi turun dari **0.71** (tuning pertama) menjadi **0.70** (tuning kedua), dan precision juga menurun dari **0.44** menjadi **0.43**. Secara keseluruhan, model hasil **tuning pertama** memberikan kombinasi terbaik antara recall yang tinggi (**0.87**) dan keseimbangan metrik lainnya, sehingga dapat dianggap sebagai model dengan performa terbaik.
+Berdasarkan hasil perbandingan antara model terbaik (LGBM Default dan Logistic Regression Default) dengan model setelah tuning (LGBM 1st Tuning, LGBM 2nd Tuning, dan Logistic Reg Tuning), model *LGBM 1st Tuning* menunjukkan hasil terbaik dalam hal **Recall Test** dengan skor 0.8672. Ini mengindikasikan bahwa *LGBM 1st Tuning* berhasil menangkap lebih banyak kelas positif dibandingkan model lainnya. Meskipun model *Logistic Regression Tuning* memiliki skor recall yang baik (0.7901), performa recall *LGBM 1st Tuning* tetap lebih unggul, menandakan bahwa tuning pada model *LGBM* memberikan peningkatan signifikan dalam kemampuan deteksi kelas positif.
+
 
 
 ## 7. Model Evaluation Summary
