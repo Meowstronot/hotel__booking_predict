@@ -106,7 +106,7 @@ if bt_single_predict:
 #_____________________Multi-Predict________________________________
 with tab_batch:
     st.subheader("Multiple Prediction")
-    df_example = pd.read_csv("example_input.csv")
+    df_example = pd.read_csv(clean_folder / "example_input.csv")
     csv = df_example.to_csv(index=False)
 
     st.download_button(

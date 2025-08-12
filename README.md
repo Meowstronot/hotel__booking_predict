@@ -111,6 +111,14 @@ pip install -r requirements.txt
 * Buka file `Revisi_hotel_booking_cancelation.ipynb` dengan Jupyter Notebook.
 * Jalankan setiap sel untuk melihat analisis dan hasil prediksi.
 
+### D. Streamlit App:
+* Buka link https://hotelbookingpredict.streamlit.app/ untuk memakai aplikasi predict
+* Atau menggunakan versi local dengan mengaktifkan environment python terlebih dahulu, lalu ketik:
+```
+cd streamlit
+streamlit run main.py
+```
+
 ## 11. Contact 
 * **Nama**: Moh. Khisanul Fakhrudin Akbar
 * **Email**: shinaruikhisan@gmail.com
