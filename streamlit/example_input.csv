@@ -1,0 +1,42 @@
+country,market_segment,previous_cancellations,booking_changes,deposit_type,days_in_waiting_list,customer_type,reserved_room_type,required_car_parking_spaces,total_of_special_requests
+ISR,Online TA,4,0,No Deposit,13,Transient,F,1,1
+PRT,Direct,9,1,Refundable,8,Transient,A,0,2
+FRA,Direct,8,0,Refundable,16,Transient,G,0,0
+CN,Online TA,5,1,No Deposit,9,Transient,P,0,2
+POL,Direct,2,0,Refundable,0,Transient,C,0,0
+DEU,Offline TA/TO,0,7,No Deposit,54,Contract,B,4,3
+DNK,Corporate,0,9,Non Refund,45,Group,H,5,4
+BEL,Groups,0,10,No Deposit,30,Transient-Party,G,7,1
+GBR,Corporate,0,3,Refundable,33,Contract,C,3,0
+ITA,Offline TA/TO,0,6,No Deposit,48,Group,L,3,5
+NOR,Aviation,0,4,Non Refund,37,Transient-Party,E,6,2
+ROU,Complementary,0,11,No Deposit,51,Contract,D,4,3
+USA,Groups,0,12,Refundable,23,Transient-Party,A,5,1
+FRA,Corporate,0,5,No Deposit,43,Group,F,7,0
+BEL,Offline TA/TO,0,7,Refundable,26,Transient-Party,H,6,0
+GBR,Complementary,0,8,No Deposit,40,Contract,B,4,2
+ITA,Groups,0,9,Refundable,28,Group,D,7,3
+NLD,Corporate,0,8,No Deposit,42,Transient-Party,G,5,2
+CHN,Offline TA/TO,0,10,No Deposit,31,Transient-Party,C,4,1
+POL,Corporate,0,11,Refundable,35,Contract,L,6,3
+DEU,Online TA,3,1,No Deposit,7,Transient,F,1,0
+ROU,Direct,2,0,Refundable,10,Transient,F,0,0
+PRT,Direct,6,0,No Deposit,15,Transient,C,1,1
+FRA,Online TA,1,1,Refundable,5,Transient,B,1,0
+CHN,Direct,4,0,No Deposit,6,Transient,L,0,2
+ISR,Online TA,5,1,Refundable,12,Transient,G,0,3
+BEL,Offline TA/TO,0,4,No Deposit,27,Group,H,6,2
+DNK,Corporate,0,9,No Deposit,41,Contract,A,5,3
+GBR,Groups,0,3,Refundable,38,Transient-Party,F,3,1
+POL,Offline TA/TO,0,7,No Deposit,36,Contract,D,4,1
+NOR,Corporate,0,5,Non Refund,44,Group,B,5,2
+ITA,Offline TA/TO,0,6,Refundable,50,Transient-Party,E,6,0
+FRA,Groups,0,9,No Deposit,47,Transient-Party,C,7,4
+CHN,Corporate,0,8,Refundable,39,Contract,G,5,1
+USA,Groups,0,7,No Deposit,33,Transient-Party,H,4,0
+DEU,Groups,0,6,No Deposit,35,Group,L,6,1
+ROU,Corporate,0,5,Refundable,45,Contract,B,3,0
+NLD,Offline TA/TO,0,4,No Deposit,48,Transient-Party,C,7,3
+BEL,Corporate,0,3,No Deposit,37,Group,F,5,1
+GBR,Complementary,0,2,Refundable,32,Contract,D,4,0
+POL,Groups,0,1,No Deposit,40,Transient-Party,G,6,2
